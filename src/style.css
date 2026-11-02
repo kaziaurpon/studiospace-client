@@ -33,3 +33,5 @@ html{scroll-padding-top:90px}body{background:var(--bg);color:var(--ink);font-siz
 .hero-slide .hero-content h1{color:#fff!important}
 /* Contrast fixes for dark photographic panels and anchored sections */
 .cta h2{color:#f7f4ed}.cta h2 em{color:var(--lime)}.auth-visual h2{color:#fff}section[id],footer[id]{scroll-margin-top:100px}
+/* Give dark-mode listing cards a distinct elevated surface */
+[data-theme=dark] .studio-card{background:#222d27;border-color:#3b4941;box-shadow:0 4px 16px rgba(0,0,0,.22)}[data-theme=dark] .studio-card:hover{background:#26332c;border-color:#4b5a51;box-shadow:0 16px 34px rgba(0,0,0,.3)}[data-theme=dark] .studio-card .card-meta{color:#b6c0b9}[data-theme=dark] .studio-card .card-bottom{border-color:#3b4941}
