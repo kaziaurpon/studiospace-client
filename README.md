@@ -73,7 +73,12 @@ Open `http://localhost:5173`.
 
 ## Examiner access
 
-A dedicated examiner account has **not** been provisioned. Use **Register** on the live website to create an account and test authenticated features. Do not use real personal information for assessment.
+Use this dedicated account to review authenticated features on the live website:
+
+- **Email:** `aurafumee@gmail.com`
+- **Password:** `AAAaaa`
+
+This account is for assessment only. Do not add personal data or reuse this password on any other service.
 
 ## Deployment notes
 
