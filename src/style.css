@@ -101,3 +101,5 @@ html{scroll-padding-top:92px}body{background:var(--bg);color:var(--ink);font-fam
 /* Keep the About section in the same rounded-card language as the page. */
 .guarantee{width:min(1220px,calc(100% - 48px));margin:42px auto;padding:clamp(38px,5.5vw,68px) 0;border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:var(--shadow)}
 @media(max-width:650px){.guarantee{width:calc(100% - 34px);margin:28px auto;padding:28px 0;border-radius:16px}}
+/* Keep the theme toggle circular and visible beside mobile auth actions. */
+@media(max-width:650px){.nav-actions>.theme-btn{display:grid!important;flex:0 0 40px!important;width:40px!important;min-width:40px;height:40px!important;min-height:40px;padding:0;aspect-ratio:1;border-radius:50%!important;place-items:center;align-self:center}.nav-actions>.theme-btn svg{display:block!important;width:18px;height:18px;flex:none}}
