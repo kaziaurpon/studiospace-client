@@ -1,29 +1,86 @@
-# StudioSpace Client
+# StudioSpace
 
-React + Vite frontend for the StudioSpace creative-studio marketplace.
+**StudioSpace** is a creative-space marketplace where filmmakers, photographers, musicians, and other creators can discover and book studios, while hosts can list and manage their spaces.
 
-## Local setup
+## Live website
 
-1. Copy `.env.example` to `.env`.
-2. Set `VITE_API_URL=http://localhost:5001/api`.
-3. Add `VITE_GOOGLE_CLIENT_ID` from the Google Cloud Web OAuth client. Add the current local Vite origin (for example `http://localhost:5173`) to that OAuth client's Authorized JavaScript origins.
-4. Optionally set `VITE_IMGBB_API_KEY` for direct image uploads.
-5. Run `npm install` and `npm run dev`.
+[Open StudioSpace](https://studiospace-client-seven.vercel.app)
 
-Keep `.env` private; never commit it. The client uses the Express API with credentialed HTTP-only session cookies.
+## Highlights
 
-## Vercel deployment
+- Browse and search studio listings by category, location, and price.
+- View studio photos, amenities, host details, ratings, and guest reviews.
+- Create an account with email/password or Google sign-in.
+- Add, update, and delete studio listings with host ownership checks.
+- Request bookings, track booking status, and cancel pending requests.
+- Save favorite studios to a MongoDB-backed wishlist.
+- Download an invoice for a confirmed booking.
+- Switch between light and dark themes; layouts adapt to mobile and desktop.
 
-Import this repository into Vercel. The Vite build command is `npm run build`, and the output directory is `dist`. `vercel.json` rewrites deep links to `index.html` for React Router.
+## Technology
 
-Set these Vercel environment variables for Production, Preview, and Development as needed:
+- **Frontend:** React, Vite, React Router, JavaScript, and CSS
+- **UI and interactions:** Lucide icons, Swiper, and Sonner
+- **PDF invoices:** jsPDF
+- **API:** Express.js and MongoDB (see the [server README](https://github.com/kaziaurpon/studiospace-server#readme))
+- **Authentication:** JWT in HTTPOnly cookies, with Google Identity Services support
+- **Hosting:** Vercel for the client; the API can be hosted on Render
 
-- `VITE_API_URL`: the deployed Render API URL ending in `/api`.
-- `VITE_GOOGLE_CLIENT_ID`: the Google Web OAuth client ID.
-- `VITE_IMGBB_API_KEY`: optional public upload key.
+## Run locally
 
-After deployment, add the Vercel site origin to the OAuth client's Authorized JavaScript origins. Set the exact Vercel origin as the Render service's `CLIENT_URL` so CORS and session cookies work.
+Clone both repositories into the same parent directory so the relative paths below work:
 
-## Live app
+```bash
+git clone https://github.com/kaziaurpon/studiospace-client.git
+git clone https://github.com/kaziaurpon/studiospace-server.git
+```
 
-To be added after deployment.
+### 1. Start the API
+
+```bash
+cd ../studiospace-server
+cp .env.example .env
+```
+
+Set `MONGODB_URI` and a random `JWT_SECRET` of at least 32 characters in `server/.env`. Set `CLIENT_URL=http://localhost:5173`. To enable Google sign-in locally, set `GOOGLE_CLIENT_ID` to your Google Web OAuth client ID.
+
+Then install dependencies and start the API:
+
+```bash
+npm install
+npm run dev
+```
+
+The API runs at `http://localhost:5001` by default.
+
+### 2. Start the client
+
+In a second terminal:
+
+```bash
+cd ../studiospace-client
+cp .env.example .env
+```
+
+Set `VITE_API_URL=http://localhost:5001/api`. For Google sign-in, set the matching `VITE_GOOGLE_CLIENT_ID`; add `http://localhost:5173` to the OAuth client's authorized JavaScript origins. `VITE_IMGBB_API_KEY` is optional and enables direct studio-image uploads.
+
+```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173`.
+
+## Examiner access
+
+A dedicated examiner account has **not** been provisioned. Use **Register** on the live website to create an account and test authenticated features. Do not use real personal information for assessment.
+
+## Deployment notes
+
+The client is a Vite single-page app. `vercel.json` rewrites route requests to `index.html`, allowing React Router routes to reload directly. Configure these variables in Vercel:
+
+- `VITE_API_URL`: deployed API origin ending in `/api`.
+- `VITE_GOOGLE_CLIENT_ID`: Google Web OAuth client ID (optional if Google sign-in is not used).
+- `VITE_IMGBB_API_KEY`: ImgBB upload key (optional).
+
+On the API host, configure `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL`, and, when using Google sign-in, `GOOGLE_CLIENT_ID`. Keep `.env` files and credentials out of Git.
