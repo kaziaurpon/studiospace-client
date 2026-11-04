@@ -88,3 +88,7 @@ html{scroll-padding-top:92px}body{background:var(--bg);color:var(--ink);font-fam
 /* Keep the dark feature panels inside the same indigo color system. */
 [data-theme=dark] .guarantee{background:radial-gradient(ellipse at 85% 18%,rgba(111,94,238,.27),transparent 42%),linear-gradient(125deg,#141625,#1c1d35)}
 [data-theme=dark] .cta{background:radial-gradient(ellipse at 90% 10%,rgba(111,94,238,.2),transparent 44%),linear-gradient(125deg,#141625,#20213d)}
+
+/* Match the Host Guarantee panel to the rounded CTA card below it. */
+.guarantee{width:min(1220px,calc(100% - 48px));margin-inline:auto;border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+@media(max-width:650px){.guarantee{width:calc(100% - 36px);border-radius:16px}}
