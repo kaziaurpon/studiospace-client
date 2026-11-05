@@ -27,6 +27,15 @@
 - **Backend and data:** Express.js API with MongoDB — see the [server README](https://github.com/kaziaurpon/studiospace-server#readme)
 - **Hosting:** Vercel for the client; the API is configured separately
 
+## Examiner test account
+
+Use this account to review signed-in features on the live website:
+
+- **Email:** `aurafumee@gmail.com`
+- **Password:** `AAAaaa`
+
+The account is provided for project assessment. Please do not change its credentials or add personal information.
+
 ## Run locally
 
 ### Prerequisites
@@ -99,15 +108,6 @@ npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173). Keep `.env` private; it is excluded from Git.
-
-## Examiner test account
-
-Use this account to review signed-in features on the live website:
-
-- **Email:** `aurafumee@gmail.com`
-- **Password:** `AAAaaa`
-
-The account is provided for project assessment. Please do not change its credentials or add personal information.
 
 ## Deployment
 
