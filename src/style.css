@@ -142,3 +142,10 @@ input[type="date"],input[type="time"]{cursor:pointer}
 .listing-table-actions{display:flex;justify-content:center;gap:5px}.listing-action-btn{display:grid;width:32px;height:32px;place-items:center;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--muted);transition:background .18s,color .18s,border-color .18s}.listing-action-btn:hover{border-color:var(--line);background:var(--soft);color:var(--ink)}.listing-action-btn.edit:hover{color:var(--accent)}.listing-action-btn.delete:hover{color:#b13951}
 @media(max-width:900px){.listing-table-head,.listing-table-row{grid-template-columns:minmax(200px,1.8fr) minmax(95px,1fr) minmax(90px,.9fr) minmax(70px,.65fr) minmax(80px,.75fr) 102px;gap:10px;padding-right:14px;padding-left:14px}.listing-space-cell{gap:9px}.listing-space-cell>img{width:48px;height:48px}}
 @media(max-width:650px){.listing-table-head{display:none}.listing-table-row{grid-template-columns:1fr 1fr;gap:13px 16px;padding:16px}.listing-space-cell{grid-column:1/-1;padding-bottom:12px;border-bottom:1px solid var(--line)}.listing-space-cell>img{width:62px;height:62px}.listing-space-title{font-size:14px}.listing-table-value{display:grid;gap:5px}.listing-table-value>small{display:block;color:var(--muted);font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}.listing-table-actions{grid-column:1/-1;justify-content:flex-end;padding-top:10px;border-top:1px solid var(--line)}}
+
+/* Brief confetti burst after a booking request is accepted. */
+.booking-celebration{position:fixed;inset:0;z-index:90;overflow:hidden;pointer-events:none}
+.booking-celebration span{position:absolute;top:-14px;width:8px;height:13px;border-radius:2px;opacity:0;animation:booking-confetti-fall 1.5s cubic-bezier(.15,.62,.35,1) forwards}
+.booking-celebration span:nth-child(3n){width:7px;height:7px;border-radius:50%}
+@keyframes booking-confetti-fall{0%{transform:translate3d(0,-12px,0) rotate(0);opacity:0}10%{opacity:1}100%{transform:translate3d(var(--confetti-drift),105vh,0) rotate(700deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.booking-celebration{display:none}}
