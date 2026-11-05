@@ -1,48 +1,57 @@
 # StudioSpace
 
-**StudioSpace** is a creative-space marketplace where filmmakers, photographers, musicians, and other creators can discover and book studios, while hosts can list and manage their spaces.
+**A creative-space marketplace for people who make things.** StudioSpace connects filmmakers, photographers, podcasters, musicians, and other creators with production-ready spaces listed by independent hosts.
 
-## Live website
+**Live website:** [studiospace-client-seven.vercel.app](https://studiospace-client-seven.vercel.app)
+**Client repository:** [github.com/kaziaurpon/studiospace-client](https://github.com/kaziaurpon/studiospace-client)
+**API repository:** [github.com/kaziaurpon/studiospace-server](https://github.com/kaziaurpon/studiospace-server)
 
-[Open StudioSpace](https://studiospace-client-seven.vercel.app)
+## Product highlights
 
-## Highlights
-
-- Browse and search studio listings by category, location, and price.
-- View studio photos, amenities, host details, ratings, and guest reviews.
-- Create an account with email/password or Google sign-in.
-- Add, update, and delete studio listings with host ownership checks.
-- Request bookings, track booking status, and cancel pending requests.
-- Save favorite studios to a MongoDB-backed wishlist.
-- Download an invoice for a confirmed booking.
-- Switch between light and dark themes; layouts adapt to mobile and desktop.
+- Browse studios for photography, film, podcasts, music, and art workshops.
+- Search listings and filter by category; open each listing for its images, host details, amenities, capacity, and pricing.
+- Register or sign in with email and password, or use Google sign-in when OAuth is configured.
+- Create, update, and remove studio listings, with host information attached to each listing.
+- Submit booking requests with a date, time range, crew size, and production notes.
+- Track booking status, cancel pending requests, and download a booking receipt as a PDF.
+- Prevent confirmed time-slot conflicts and let hosts review, confirm, or complete booking requests.
+- Save studios to a personal wishlist and leave reviews for visited spaces.
+- Use the app on mobile or desktop, with light and dark themes.
 
 ## Technology
 
-- **Frontend:** React, Vite, React Router, JavaScript, and CSS
-- **UI and interactions:** Lucide icons, Swiper, and Sonner
-- **PDF invoices:** jsPDF
-- **API:** Express.js and MongoDB (see the [server README](https://github.com/kaziaurpon/studiospace-server#readme))
-- **Authentication:** JWT in HTTPOnly cookies, with Google Identity Services support
-- **Hosting:** Vercel for the client; the API can be hosted on Render
+- **Frontend:** React, JavaScript, Vite, React Router
+- **Styling and UI:** Custom CSS, Lucide React, Swiper, Sonner
+- **PDF receipts:** jsPDF
+- **Authentication:** JWT sessions in HTTPOnly cookies; Google Identity Services support
+- **Backend and data:** Express.js API with MongoDB — see the [server README](https://github.com/kaziaurpon/studiospace-server#readme)
+- **Hosting:** Vercel for the client; the API is configured separately
 
 ## Run locally
 
-Clone both repositories into the same parent directory so the relative paths below work:
+### Prerequisites
+
+- Node.js and npm
+- MongoDB running locally or a MongoDB Atlas connection string
+- Google OAuth credentials only if you want to enable Google sign-in
+
+Clone both repositories into the same parent folder:
 
 ```bash
 git clone https://github.com/kaziaurpon/studiospace-client.git
 git clone https://github.com/kaziaurpon/studiospace-server.git
 ```
 
-### 1. Start the API
+### 1. Configure and start the API
+
+In a terminal:
 
 ```bash
-cd ../studiospace-server
+cd studiospace-server
 touch .env
 ```
 
-Add these settings to `server/.env` (replace the MongoDB URI and secret with your own values):
+Add the following to `studiospace-server/.env`, replacing the MongoDB URI and JWT secret with your own values:
 
 ```env
 PORT=5001
@@ -54,8 +63,6 @@ NODE_ENV=development
 GOOGLE_CLIENT_ID=your-google-oauth-client-id.apps.googleusercontent.com
 ```
 
-Google sign-in is optional; use your Google Web OAuth client ID to enable it.
-
 Then install dependencies and start the API:
 
 ```bash
@@ -65,16 +72,16 @@ npm run dev
 
 The API runs at `http://localhost:5001` by default.
 
-### 2. Start the client
+### 2. Configure and start the client
 
-In a second terminal:
+Open a second terminal:
 
 ```bash
-cd ../studiospace-client
+cd studiospace-client
 touch .env
 ```
 
-Add these settings to `client/.env`:
+Add the following to `studiospace-client/.env`:
 
 ```env
 VITE_API_URL=http://localhost:5001/api
@@ -82,30 +89,32 @@ VITE_IMGBB_API_KEY=your-imgbb-api-key
 VITE_GOOGLE_CLIENT_ID=your-google-oauth-client-id.apps.googleusercontent.com
 ```
 
-Google sign-in and the ImgBB upload key are optional. For Google sign-in, use the matching OAuth client ID and add `http://localhost:5173` to its authorized JavaScript origins.
+`VITE_IMGBB_API_KEY` and Google sign-in are optional. For Google sign-in, use the same OAuth client ID on client and server and authorize `http://localhost:5173` in Google Cloud Console.
+
+Start the client:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open `http://localhost:5173`.
+Open [http://localhost:5173](http://localhost:5173). Keep `.env` private; it is excluded from Git.
 
-## Examiner access
+## Examiner test account
 
-Use this dedicated account to review authenticated features on the live website:
+Use this account to review signed-in features on the live website:
 
 - **Email:** `aurafumee@gmail.com`
 - **Password:** `AAAaaa`
 
-This account is for assessment only. Do not add personal data or reuse this password on any other service.
+The account is provided for project assessment. Please do not change its credentials or add personal information.
 
-## Deployment notes
+## Deployment
 
-The client is a Vite single-page app. `vercel.json` rewrites route requests to `index.html`, allowing React Router routes to reload directly. Configure these variables in Vercel:
+The client is deployed on Vercel. Its `vercel.json` rewrite supports direct loading and refresh on React Router routes. Configure these variables in the Vercel project settings:
 
-- `VITE_API_URL`: deployed API origin ending in `/api`.
-- `VITE_GOOGLE_CLIENT_ID`: Google Web OAuth client ID (optional if Google sign-in is not used).
-- `VITE_IMGBB_API_KEY`: ImgBB upload key (optional).
+- `VITE_API_URL` — deployed API URL ending in `/api`.
+- `VITE_GOOGLE_CLIENT_ID` — optional Google Web OAuth client ID.
+- `VITE_IMGBB_API_KEY` — optional ImgBB upload key.
 
-On the API host, configure `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL`, and, when using Google sign-in, `GOOGLE_CLIENT_ID`. Keep `.env` files and credentials out of Git.
+Configure `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL`, and optionally `GOOGLE_CLIENT_ID` in the API host settings. See the [server deployment notes](https://github.com/kaziaurpon/studiospace-server#deploy-on-render).
