@@ -1,12 +1,1 @@
-{
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://studiospace-api.onrender.com/api/:path*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
-}
+{"rewrites":[{"source":"/(.*)","destination":"/index.html"}]}

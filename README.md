@@ -84,7 +84,7 @@ This account is for assessment only. Do not add personal data or reuse this pass
 
 The client is a Vite single-page app. `vercel.json` rewrites route requests to `index.html`, allowing React Router routes to reload directly. Configure these variables in Vercel:
 
-- Production API requests use the same-origin `/api` Vercel rewrite to `https://studiospace-api.onrender.com/api`, so HTTP-only session cookies work on mobile browsers. `VITE_API_URL` is used for local development.
+- `VITE_API_URL`: deployed API origin ending in `/api`.
 - `VITE_GOOGLE_CLIENT_ID`: Google Web OAuth client ID (optional if Google sign-in is not used).
 - `VITE_IMGBB_API_KEY`: ImgBB upload key (optional).
 
