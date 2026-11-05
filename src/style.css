@@ -121,6 +121,7 @@ html{scroll-padding-top:92px}body{background:var(--bg);color:var(--ink);font-fam
 [data-theme="dark"] input[type="date"],[data-theme="dark"] input[type="time"]{color-scheme:dark}
 [data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator,[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator{filter:invert(1) brightness(1.35);opacity:.95;cursor:pointer}
 input[type="date"],input[type="time"]{cursor:pointer}
+.detail-gallery{display:block;grid-template-columns:none;width:100%}
 
 /* Host listings: compact management table inspired by the supplied reference. */
 .listing-table{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:0 8px 28px rgba(31,35,72,.045)}
