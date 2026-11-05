@@ -39,10 +39,22 @@ git clone https://github.com/kaziaurpon/studiospace-server.git
 
 ```bash
 cd ../studiospace-server
-cp .env.example .env
+touch .env
 ```
 
-Set `MONGODB_URI` and a random `JWT_SECRET` of at least 32 characters in `server/.env`. Set `CLIENT_URL=http://localhost:5173`. To enable Google sign-in locally, set `GOOGLE_CLIENT_ID` to your Google Web OAuth client ID.
+Add these settings to `server/.env` (replace the MongoDB URI and secret with your own values):
+
+```env
+PORT=5001
+MONGODB_URI=mongodb://127.0.0.1:27017
+MONGODB_DB=studiospace
+JWT_SECRET=replace-with-a-random-secret-of-at-least-32-characters
+CLIENT_URL=http://localhost:5173
+NODE_ENV=development
+GOOGLE_CLIENT_ID=your-google-oauth-client-id.apps.googleusercontent.com
+```
+
+Google sign-in is optional; use your Google Web OAuth client ID to enable it.
 
 Then install dependencies and start the API:
 
@@ -59,10 +71,18 @@ In a second terminal:
 
 ```bash
 cd ../studiospace-client
-cp .env.example .env
+touch .env
 ```
 
-Set `VITE_API_URL=http://localhost:5001/api`. For Google sign-in, set the matching `VITE_GOOGLE_CLIENT_ID`; add `http://localhost:5173` to the OAuth client's authorized JavaScript origins. `VITE_IMGBB_API_KEY` is optional and enables direct studio-image uploads.
+Add these settings to `client/.env`:
+
+```env
+VITE_API_URL=http://localhost:5001/api
+VITE_IMGBB_API_KEY=your-imgbb-api-key
+VITE_GOOGLE_CLIENT_ID=your-google-oauth-client-id.apps.googleusercontent.com
+```
+
+Google sign-in and the ImgBB upload key are optional. For Google sign-in, use the matching OAuth client ID and add `http://localhost:5173` to its authorized JavaScript origins.
 
 ```bash
 npm install
